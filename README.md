@@ -2,7 +2,8 @@
 Windhager myComfort Python client for Home Assistant
 
 # Usage
-This module is intended to use inside HA to interact as a client of RC7030 gateway (myComfort).
+This module is intended to use inside HA to interact as a client of RC7030 gateway (myComfort). You can get your credentials on 
+https://connect.windhager.com/
 
 Here is the manual usage of the module : 
     
