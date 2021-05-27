@@ -53,3 +53,6 @@ Here is what you should get in a real world :
     Operation mode : Stand-by heating limit
     Burner active : False
     Room temperature setpoint : 13.0    
+
+# Limitations
+It doesn't handle thermostat for now (I don't have anyone to test). It it only tested on a Windhager Biowin II heater (for now).
