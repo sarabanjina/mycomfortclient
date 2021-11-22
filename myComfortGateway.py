@@ -78,10 +78,11 @@ class Gateway(myComfortObject):
                         if fcttype == 9 or fcttype == 10:
                             logger.info("Boiler found : " + node['name'] + " (" + id + ")")
                             self._boilers.append(Boiler(node['name'], node['neuronId'], id, self._gateway))
-
-                        if fcttype == 14:
+                        elif fcttype == 14:
                             logger.info("Module found : " + node['name'] + " (" + id + ")")
                             self._modules.append(Module(node['name'], node['neuronId'], id, self._gateway))
+                        else:
+                            logger.info("Unknown device found : " + node['name'] + " (" + id + ")")
 
                     self._installation.append(node)
                 except KeyError:
