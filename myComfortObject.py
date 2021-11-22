@@ -16,7 +16,11 @@ class myComfortObject:
         try:
             logger.debug("Retrieving url " + url)
             r = requests.get(url, auth=self._gateway._auth)
-            r.raise_for_status()
+            if r.status_code == 401:
+                logger.warning("Authentication error (401) while retrieving " + url)
+                self._gateway._refreshAuth()
+                r = requests.get(url, auth=self._gateway._auth)
+
         except requests.exceptions.HTTPError as e:
             logger.warning("Error while retrieving " + url + " : " + str(e))
             return
