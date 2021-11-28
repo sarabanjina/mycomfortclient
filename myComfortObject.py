@@ -8,14 +8,15 @@ logger = logging.getLogger("mycomfortclient")
 class myComfortObject:
     """Base for myComfortObjects."""
 
-    def __init__(self):
+    def __init__(self, requestTimeout=5):
         self._gateway: Gateway = None
         self._serial_no = None
+        self._requestTimeout = int(requestTimeout)
 
     def _get(self,url):
         try:
             logger.debug("Retrieving url " + url)
-            r = requests.get(url, auth=self._gateway._auth,timeout=5)
+            r = requests.get(url, auth=self._gateway._auth, timeout=self._requestTimeout)
             if r.status_code == 401:
                 logger.warning("Authentication error (401) while retrieving " + url)
                 self._gateway._refreshAuth()
