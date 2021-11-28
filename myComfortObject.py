@@ -15,7 +15,7 @@ class myComfortObject:
     def _get(self,url):
         try:
             logger.debug("Retrieving url " + url)
-            r = requests.get(url, auth=self._gateway._auth)
+            r = requests.get(url, auth=self._gateway._auth,timeout=5)
             if r.status_code == 401:
                 logger.warning("Authentication error (401) while retrieving " + url)
                 self._gateway._refreshAuth()
