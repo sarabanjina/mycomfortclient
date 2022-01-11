@@ -149,6 +149,8 @@ class Gateway(myComfortObject):
 
     def value(self, oid, cacheDuration = 0):
         datapoint = self.datapoint(oid, cacheDuration)
+        if (datapoint is None or oid == 'error'):
+            return 'error'
 
         splittedOid = oid.split('/')
         # Oid "/1/xx/0/2/9/0 is not enum (Operation Mode)
