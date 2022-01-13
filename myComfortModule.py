@@ -33,34 +33,34 @@ class Module(myComfortObject):
 #        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Actual") + "/0")
 
     def getFlowSetpointTemperature(self):
-        return self._gateway.value("/1/" + self._id + "/0/" + "1/2" + "/0")
+        return self._gateway.value("/1/" + self._id + "/0/" + "1/2" + "/0", self._gateway._cacheDuration * 5)
 #        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Set point") + "/0")
 
     def isDHWCircuit(self):
-        return int(self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("DHW circuit") + "/0"))
+        return int(self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("DHW circuit") + "/0", self._gateway._cacheDuration * 60))
 
     def getDHWTemperature(self):
         return self._gateway.value("/1/" + self._id + "/0/" + "0/4" + "/0")
 #        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Actual") + "/0")
 
     def getDHWSetpointTemperature(self):
-        return self._gateway.value("/1/" + self._id + "/0/" + "1/4" + "/0")
+        return self._gateway.value("/1/" + self._id + "/0/" + "1/4" + "/0", self._gateway._cacheDuration * 5)
 #        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Set point") + "/0")
 
     def getActiveProgram(self):
-        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Select mode\t") + "/0")
+        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Select mode\t") + "/0", self._gateway._cacheDuration * 5)
 
     def getOperationMode(self):
-        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Operation mode") + "/0")
+        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Operation mode") + "/0", self._gateway._cacheDuration * 5)
 
     def getBurnerActive(self):
         return self._gateway.boilers()[0].getBurnerActive()
 
     def getCurrentDesiredTemperature(self):
-        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Set point") + "/0")
+        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Set point") + "/0", self._gateway._cacheDuration * 5)
 
     def getRoomTemperatureSetpoint(self):
-        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Set point") + "/0")
+        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Set point") + "/0", self._gateway._cacheDuration * 5)
 
     def setRoomTemperatureSetpoint(self, temperature):
         return self._gateway.setValue("/1/" + self._id + "/0/" + self._gateway.oid("Temperature") + "/0", str(temperature))
