@@ -160,8 +160,10 @@ class Gateway(myComfortObject):
         return datapoint['value'] if 'value' in datapoint else 'error'
 
     def oid(self, description):
-        id,subid = self._VarIdentTexte.getid(description)
-
+        try:
+            id,subid = self._VarIdentTexte.getid(description)
+        except:
+            return 'error'
         return id + "/" + subid if id and subid else 'error'
 
     def setValue(self, oid, value):
