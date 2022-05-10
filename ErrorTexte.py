@@ -5,15 +5,17 @@ from pickle import UnpicklingError
 import os
 import logging
 
+#from mycomfortclient.myComfortObject import myComfortObject
+from .myComfortObject import myComfortObject
+
 logger = logging.getLogger('mycomfortclient')
 
-class ErrorTexte:
+class ErrorTexte(myComfortObject):
     def __init__(self, gateway, language='en'):
         super().__init__()
-        self.host = host
         self.language = language
         self.ErrorTexte = {}
-        self.cache_file = "ErrorTexte_" + self.language + ".pickle"
+        self.cache_file = "ErrorTexte_" + self.language + ".cache"
         self._gateway = gateway
 
         self._getErrorTexte()
@@ -30,11 +32,9 @@ class ErrorTexte:
 
         try:
             root = ET.fromstring(self._get('http://' + self._gateway._hostname + ':' + self._gateway._port + '/res/xml/ErrorTexte_' + self.language + '.xml'))
-        except:
-            logger.error("Exception getting ErrorTexte from server")
+        except Exception as e:
+            logger.error("Exception getting ErrorTexte from server : %s" % e)
             return
-
-        root = ET.fromstring(r.text)
 
         for error in root.findall('error'):
             self.ErrorTexte[error.get('code')] = error.get('text')
@@ -44,4 +44,7 @@ class ErrorTexte:
         binary_file.close()
 
     def get(self, id):
-        return  self.ErrorTexte.get(str(id), 'Unknown error')
+        if id == '-':
+            return 'OK'
+        else:
+            return  self.ErrorTexte.get(str(id), 'Unknown error')

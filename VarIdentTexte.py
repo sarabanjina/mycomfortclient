@@ -45,12 +45,15 @@ class VarIdentTexte(myComfortObject):
                 if not str(mn.text) in self.VarIdentTexte['text']:
                     self.VarIdentTexte['text'][str(mn.text)] = (gn.get('id'), mn.get('id'))
 
-        # Missing Operating mode in English and French (Betriebsphasen in German)
-        self.VarIdentTexte['id']['2']['1'] = "Operating mode"
-        self.VarIdentTexte['text']['Operating mode'] = ('2','1')
         # Missing Outside temperature in English and French (Aussentemperatur in German)
         self.VarIdentTexte['id']['0']['0'] = "Outside temperature"
         self.VarIdentTexte['text']['Outside temperature'] = ('0','0')
+        # Missing Alarm Code in English and French (AlarmCode in German)
+        self.VarIdentTexte['id']['2']['0'] = "Alarm Code"
+        self.VarIdentTexte['text']['Alarm Code'] = ('2','0')
+        # Missing Operating mode in English and French (Betriebsphasen in German)
+        self.VarIdentTexte['id']['2']['1'] = "Operating mode"
+        self.VarIdentTexte['text']['Operating mode'] = ('2','1')
 
         binary_file = open(self.cache_file,mode='wb')
         pickle.dump(self.VarIdentTexte,binary_file)

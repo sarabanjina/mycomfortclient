@@ -50,6 +50,12 @@ class Boiler(myComfortObject):
     def getOperatingMode(self):
         return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Operating mode") + "/0")
 
+    def getAlarmCode(self):
+        return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Alarm Code") + "/0")
+
+    def getAlarmText(self):
+        return self._gateway._ErrorTexte.get(self.getAlarmCode())
+
     def getOperatingTimeCleaning(self):
         return self._gateway.value("/1/" + self._id + "/0/" + self._gateway.oid("Operating time until Stage 1 cleaning") + "/0", self._gateway._cacheDuration * 60)
 

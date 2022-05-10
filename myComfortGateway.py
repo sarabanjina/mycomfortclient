@@ -15,6 +15,7 @@ from .myComfortBoiler import Boiler
 from .myComfortModule import Module
 from .VarIdentTexte import VarIdentTexte
 from .AufzaehlTexte import AufzaehlTexte
+from .ErrorTexte import ErrorTexte
 
 logger = logging.getLogger("mycomfortclient")
 
@@ -42,6 +43,7 @@ class Gateway(myComfortObject):
         self._cache = {}
         self._VarIdentTexte = None
         self._AufzaehlTexte = None
+        self._ErrorTexte = None
         self._lock = threading.Lock()
         self._name = ""
         self._serial_no = ""
@@ -55,12 +57,18 @@ class Gateway(myComfortObject):
         self._refreshCache()
         self._VarIdentTexte = VarIdentTexte(self._gateway, 'en')
         self._AufzaehlTexte = AufzaehlTexte(self._gateway, 'en')
+        self._ErrorTexte = ErrorTexte(self._gateway, 'en')
 
 #        logger.debug(pprint(self._VarIdentTexte.VarIdentTexte))
         logger.debug("Gateway(hostname=%s) (name=%s) (serial_no=%s) (cache_duration=%d) instantiated.", self._hostname, self._name, self._serial_no, self._cacheDuration)
 
     def _getInstallation(self):
-        subnets = self._getjson("http://" + self._hostname + ":" + self._port + apiURLPath )
+        try:
+            subnets = self._getjson("http://" + self._hostname + ":" + self._port + apiURLPath )
+        except Exception as e:
+            logger.error("Unable to get subnets from gateway : %s" % e)
+            return
+
         for subnet in subnets:
             nodes = self._getjson("http://" + self._hostname + ":" + self._port + apiURLPath + "/" + str(subnet))
 

@@ -31,6 +31,7 @@ def main():
 
     for boiler in gateway.boilers():
         print("Boiler serial_no : %s" % boiler.serial_no)
+        print("Boiler Alarm : %s" % boiler.getAlarmText())
         print("Boiler actual temperature : " + boiler.getBoilerTemperature())
         print("Boiler setpoint temperature : " + boiler.getBoilerSetpointTemperature())
         print("Boiler exhaust temperature : " + boiler.getExhaustTemperature())
