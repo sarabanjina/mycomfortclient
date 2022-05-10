@@ -49,8 +49,8 @@ class VarIdentTexte(myComfortObject):
         self.VarIdentTexte['id']['0']['0'] = "Outside temperature"
         self.VarIdentTexte['text']['Outside temperature'] = ('0','0')
         # Missing Alarm Code in English and French (AlarmCode in German)
-        self.VarIdentTexte['id']['2']['0'] = "Alarm Code"
-        self.VarIdentTexte['text']['Alarm Code'] = ('2','0')
+        self.VarIdentTexte['id']['2']['0'] = "Alarm code"
+        self.VarIdentTexte['text']['Alarm code'] = ('2','0')
         # Missing Operating mode in English and French (Betriebsphasen in German)
         self.VarIdentTexte['id']['2']['1'] = "Operating mode"
         self.VarIdentTexte['text']['Operating mode'] = ('2','1')
