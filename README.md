@@ -24,6 +24,7 @@ Here is the manual usage of the module :
 Here is what you should get in a real world : 
 
     Boiler serial_no : 0700183ec901
+    Boiler Alarm : OK
     Boiler actual temperature : 35.77
     Boiler setpoint temperature : 0.0
     Boiler exhaust temperature : 31.4
